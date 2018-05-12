@@ -13,8 +13,8 @@ export default (variables = variable) => {
             borderColor: variables.inputBorderColor
         },
         color: variables.textColor,
-        paddingLeft: 10,
-        paddingRight: 5,
+        paddingLeft: variables.inputPaddingLeft,
+        paddingRight: variables.inputPaddingRight,
         fontSize: 15,
         textAlignVertical: 'top'
     };
