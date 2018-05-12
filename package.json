@@ -7,7 +7,7 @@
         "pretty":
             "prettier --write 'src/**/*.+(ts|tsx|css|js|jsx|md)'",
         "precommit": "pretty-quick --staged",
-        "format": "yarn pretty && yarn lint",
+        "format": "yarn lint && yarn pretty",
         "start":
             "yarn format && node node_modules/react-native/local-cli/cli.js start",
         "run:devtool": "react-devtools",

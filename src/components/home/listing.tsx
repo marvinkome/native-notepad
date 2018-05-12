@@ -1,6 +1,8 @@
 /**
  * ./src/components/helpers/listing
  * Listing component
+ * @props
+ * items: array of strings
  */
 
 import {
@@ -23,6 +25,11 @@ interface Props {
     items: string[];
 }
 
+/**
+ * Listing component. Recieve items props (an array of strings) to render
+ *
+ * *props - items: string[]
+ */
 export default class Listing extends React.Component<Props, {}> {
     render() {
         return (

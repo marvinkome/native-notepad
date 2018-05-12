@@ -7,6 +7,6 @@ import renderer from 'react-test-renderer';
 import Home from '../src/components/home';
 
 it('Renders homepage correctly', () => {
-    const hello = renderer.create(<Home />).toJSON();
-    expect(hello).toMatchSnapshot();
+    const home = renderer.create(<Home />).toJSON();
+    expect(home).toMatchSnapshot();
 });

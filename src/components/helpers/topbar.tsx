@@ -20,6 +20,12 @@ interface Props {
     children: string;
 }
 
+/**
+ * Topbar component, taked a string as child
+ *
+ * *props - children: string
+ */
+
 export default class Topbar extends React.Component<Props, {}> {
     public render() {
         return (
