@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "lint": "tslint --fix 'src/**/*.+(ts|tsx)'",
+        "lint": "tslint --fix '+(__tests__|src)/**/*.(ts|tsx)'",
         "pretty":
-            "prettier --write 'src/**/*.+(ts|tsx|css|js|jsx|md)'",
+            "prettier --write '+(__tests__|src)/**/*.+(ts|tsx|css|js|jsx|md)'",
         "precommit": "pretty-quick --staged",
         "format": "yarn lint && yarn pretty",
         "start":
