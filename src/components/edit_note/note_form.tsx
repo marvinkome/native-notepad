@@ -20,7 +20,7 @@ import Topbar from '../helpers/topbar';
 import { NoteFormTheme, styles } from './noteFormStyle';
 
 /**
- * New note form component
+ * Edit note form component
  */
 export default class NoteForm extends React.Component {
     render() {
