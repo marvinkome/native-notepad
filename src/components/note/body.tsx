@@ -5,7 +5,7 @@
 import { Content, StyleProvider, Text } from 'native-base';
 import * as React from 'react';
 import getTheme from '../../../native-base-theme/components';
-import { BodyTheme, styles } from './bodyStyles';
+import { BodyTheme, styles } from './styles';
 
 interface Props {
     children: string;

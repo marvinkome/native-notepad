@@ -11,10 +11,13 @@ import NoteForm from './note_form';
  *  Edit Note component
  */
 export default class EditNote extends React.Component {
+    static navigationOptions: object = {
+        title: 'Edit Note'
+    };
+
     render() {
         return (
-            <Container>
-                <Topbar>Edit note</Topbar>
+            <Container style={{ backgroundColor: '#fff' }}>
                 <NoteForm />
             </Container>
         );

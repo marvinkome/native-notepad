@@ -17,7 +17,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import getTheme from '../../../native-base-theme/components';
 import Topbar from '../helpers/topbar';
-import { NoteFormTheme, styles } from './noteFormStyle';
+import { NoteFormTheme, styles } from './styles';
 
 /**
  * Edit note form component

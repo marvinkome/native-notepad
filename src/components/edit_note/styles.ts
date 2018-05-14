@@ -1,6 +1,6 @@
 /**
- * ./src/components/new_note/noteForm
- * Styles for NoteForm component
+ * ./src/components/edit_note/styles
+ * Styles for Edit Note component
  */
 
 import { StyleSheet } from 'react-native';

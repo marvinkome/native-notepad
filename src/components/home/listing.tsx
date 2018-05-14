@@ -7,7 +7,7 @@
 
 import {
     Body,
-    Container,
+    CheckBox,
     Content,
     List,
     ListItem,
@@ -19,10 +19,11 @@ import {
 import * as React from 'react';
 import styled from 'styled-components';
 import getTheme from '../../../native-base-theme/components';
-import { ListingTheme, styles } from './listingStyle';
+import { ListingTheme, styles } from './styles';
 
 interface Props {
     items: string[];
+    onPress: (pagename: string, param?: object) => void;
 }
 
 /**
@@ -38,7 +39,14 @@ export default class Listing extends React.Component<Props, {}> {
                     <List
                         dataArray={this.props.items}
                         renderRow={(item: string) => (
-                            <ListItem style={styles.listItemStyle}>
+                            <ListItem
+                                style={styles.listItemStyle}
+                                onPress={() =>
+                                    this.props.onPress('Note', {
+                                        noteName: item
+                                    })
+                                }
+                            >
                                 <Body>
                                     <Text style={styles.listBodyText}>
                                         {item}

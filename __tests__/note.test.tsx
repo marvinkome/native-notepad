@@ -7,6 +7,7 @@ import renderer from 'react-test-renderer';
 import Note from '../src/components/note';
 
 it('Renders Notepage correctly', () => {
-    const note = renderer.create(<Note />).toJSON();
+    const navigation = { navigate: jest.fn(), setParams: jest.fn() };
+    const note = renderer.create(<Note navigation={navigation} />);
     expect(note).toMatchSnapshot();
 });

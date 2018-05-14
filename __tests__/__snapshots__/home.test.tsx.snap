@@ -3,69 +3,18 @@
 exports[`Renders homepage correctly 1`] = `
 <View
   style={
-    Object {
-      "flex": 1,
-      "height": 1334,
-    }
+    Array [
+      Object {
+        "flex": 1,
+        "height": 1334,
+      },
+      Object {
+        "backgroundColor": "#fff",
+      },
+    ]
   }
   virtual={undefined}
 >
-  <View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#F8F8F8",
-          "borderBottomColor": "#a7a6ab",
-          "borderBottomWidth": 0.5,
-          "elevation": 3,
-          "flexDirection": "row",
-          "height": 64,
-          "justifyContent": "center",
-          "left": 0,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 15,
-          "right": 0,
-          "shadowColor": undefined,
-          "shadowOffset": undefined,
-          "shadowOpacity": undefined,
-          "shadowRadius": undefined,
-          "top": 0,
-        }
-      }
-      virtual={undefined}
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "alignSelf": "center",
-            "flex": 1,
-          }
-        }
-        virtual={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "System",
-              "fontSize": 17,
-              "fontWeight": "600",
-              "textAlign": "center",
-            }
-          }
-          virtual={undefined}
-        >
-          Notepad
-        </Text>
-      </View>
-    </View>
-  </View>
   <RCTScrollView
     automaticallyAdjustContentInsets={false}
     contentContainerStyle={
@@ -166,6 +115,7 @@ exports[`Renders homepage correctly 1`] = `
             tvParallaxProperties={undefined}
           >
             <View
+              onPress={[Function]}
               style={
                 Array [
                   Object {
@@ -284,6 +234,7 @@ exports[`Renders homepage correctly 1`] = `
             tvParallaxProperties={undefined}
           >
             <View
+              onPress={[Function]}
               style={
                 Array [
                   Object {
@@ -385,5 +336,108 @@ exports[`Renders homepage correctly 1`] = `
       </RCTScrollView>
     </View>
   </RCTScrollView>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "alignItems": "center",
+          "bottom": 20,
+          "flexDirection": "column",
+          "height": 56,
+          "left": undefined,
+          "position": "absolute",
+          "right": 20,
+          "top": undefined,
+          "width": 56,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        collapsable={undefined}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "blue",
+            "borderRadius": 28,
+            "bottom": 0,
+            "elevation": 4,
+            "height": 56,
+            "justifyContent": "center",
+            "opacity": 1,
+            "position": "absolute",
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.4,
+            "shadowRadius": 2,
+            "width": 56,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Array [
+                Object {
+                  "color": "#000",
+                  "fontSize": 30,
+                },
+                Object {
+                  "color": "#000",
+                  "fontSize": 30,
+                },
+                Object {
+                  "color": "#fff",
+                  "fontSize": 24,
+                  "lineHeight": 27,
+                },
+              ],
+              Object {
+                "fontFamily": "Ionicons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+            ]
+          }
+          virtual={undefined}
+        >
+          
+        </Text>
+      </View>
+    </View>
+  </View>
 </View>
 `;

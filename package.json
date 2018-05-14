@@ -7,22 +7,27 @@
         "pretty":
             "prettier --write '+(__tests__|src)/**/*.+(ts|tsx|css|js|jsx|md)'",
         "precommit": "pretty-quick --staged",
-        "format": "yarn lint && yarn pretty",
+        "format": "yarn pretty && yarn lint",
         "start":
             "yarn format && node node_modules/react-native/local-cli/cli.js start",
         "run:devtool": "react-devtools",
         "test": "jest"
     },
     "dependencies": {
+        "enzyme": "^3.3.0",
+        "enzyme-to-json": "^3.3.3",
         "native-base": "^2.4.3",
         "react": "16.3.1",
         "react-native": "0.55.4",
+        "react-navigation": "^2.0.1",
         "styled-components": "^3.2.6"
     },
     "devDependencies": {
+        "@types/enzyme": "^3.1.10",
         "@types/jest": "^22.2.3",
         "@types/react": "^16.3.14",
         "@types/react-native": "^0.55.12",
+        "@types/react-navigation": "^1.5.11",
         "@types/react-test-renderer": "^16.0.1",
         "babel-jest": "^22.4.3",
         "babel-preset-react-native": "4.0.0",
