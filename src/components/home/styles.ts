@@ -1,6 +1,6 @@
 /**
- * ./src/components/helpers/listingStyle
- * Styles for Listing component
+ * ./src/components/home/styles
+ * Styles for Home component
  */
 
 import { StyleSheet } from 'react-native';
@@ -16,6 +16,7 @@ export const styles: {
     listItemStyle: object;
     listBodyText: object;
     listDateText: object;
+    iconStyles: object;
 } = StyleSheet.create({
     listItemStyle: {
         borderLeftWidth: 7,
@@ -29,5 +30,9 @@ export const styles: {
     listDateText: {
         fontSize: 13,
         fontWeight: '200'
+    },
+    iconStyles: {
+        marginRight: 15,
+        color: '#fff'
     }
 });

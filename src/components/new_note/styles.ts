@@ -1,6 +1,6 @@
 /**
- * ./src/components/new_note/noteForm
- * Styles for NoteForm component
+ * ./src/components/new_note/styles
+ * Styles for New Note component
  */
 
 import { StyleSheet } from 'react-native';
@@ -13,7 +13,13 @@ export const NoteFormTheme: object = {
     inputPaddingLeft: 0
 };
 
-export const styles = StyleSheet.create({
+export const styles: {
+    content: object;
+    textArea: object;
+    pickerCont: object;
+    pickerText: object;
+    headerText: object;
+} = StyleSheet.create({
     content: {
         paddingTop: 10,
         paddingRight: 10,
@@ -33,5 +39,10 @@ export const styles = StyleSheet.create({
         paddingLeft: 8,
         fontSize: 15,
         color: '#575757'
+    },
+    headerText: {
+        color: '#fff',
+        fontSize: 17,
+        marginRight: 15
     }
 });

@@ -7,6 +7,6 @@ import renderer from 'react-test-renderer';
 import NewNote from '../src/components/new_note';
 
 it('Renders new note page correctly', () => {
-    const newNote = renderer.create(<NewNote />).toJSON();
+    const newNote = renderer.create(<NewNote />);
     expect(newNote).toMatchSnapshot();
 });
