@@ -1,18 +1,16 @@
 /**
  * ./src/App
  *
- * Root component
+ * Route Config
  */
 
-import { Container } from 'native-base';
-import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
 import EditNote from './components/edit_note';
 import Home from './components/home';
 import NewNote from './components/new_note';
 import Note from './components/note';
 
-export const RootStack = StackNavigator(
+export default StackNavigator(
     {
         Home: Home,
         Note: Note,
@@ -29,9 +27,3 @@ export const RootStack = StackNavigator(
         }
     }
 );
-
-export default class App extends React.Component {
-    render() {
-        return <RootStack />;
-    }
-}

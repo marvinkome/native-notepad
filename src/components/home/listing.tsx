@@ -17,12 +17,13 @@ import {
 } from 'native-base';
 
 import * as React from 'react';
-import styled from 'styled-components';
 import getTheme from '../../../native-base-theme/components';
+
+import { INote } from '../../redux/reducers';
 import { ListingTheme, styles } from './styles';
 
 interface Props {
-    items: string[];
+    items: INote[];
     onPress: (pagename: string, param?: object) => void;
 }
 
@@ -38,18 +39,25 @@ export default class Listing extends React.Component<Props, {}> {
                 <Content>
                     <List
                         dataArray={this.props.items}
-                        renderRow={(item: string) => (
+                        renderRow={(item: INote) => (
                             <ListItem
                                 style={styles.listItemStyle}
                                 onPress={() =>
                                     this.props.onPress('Note', {
-                                        noteName: item
+                                        noteName: item.title,
+                                        noteBody: item.body,
+                                        noteId: item.id
                                     })
                                 }
                             >
                                 <Body>
                                     <Text style={styles.listBodyText}>
-                                        {item}
+                                        {item.title.length > 19
+                                            ? item.title.substring(
+                                                  0,
+                                                  19 - 3
+                                              ) + '...'
+                                            : item.title}
                                     </Text>
                                 </Body>
                                 <Right>

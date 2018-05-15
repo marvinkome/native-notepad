@@ -19,7 +19,11 @@ export default class Note extends React.Component<Props, {}> {
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
         return {
-            title: params ? params.noteName : 'Note Name',
+            title: params
+                ? params.noteName.length > 19
+                    ? params.noteName.substring(0, 19 - 3) + '...'
+                    : params.noteName
+                : 'Note Name',
             headerRight: (
                 <View style={styles.headerView}>
                     <TouchableHighlight onPress={params.edit}>
@@ -42,7 +46,9 @@ export default class Note extends React.Component<Props, {}> {
     render() {
         return (
             <Container style={{ backgroundColor: '#fff' }}>
-                <NoteBody>Hello</NoteBody>
+                <NoteBody>
+                    {this.props.navigation.getParam('noteBody')}
+                </NoteBody>
             </Container>
         );
     }
