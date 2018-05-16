@@ -91,6 +91,7 @@ const deleteNote = (
     saveToStorage('notepad_app', newState);
     return newState;
 };
+
 export const rootReducer = (
     state = initialState,
     action: { type: string; payload: any; id: string }

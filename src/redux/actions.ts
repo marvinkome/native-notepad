@@ -15,3 +15,8 @@ export const editNote = (note: NoteTypes, id: string) => ({
     payload: note,
     id
 });
+
+export const deleteNote = (id: string) => ({
+    type: constants.DELETE_POST,
+    id
+});
