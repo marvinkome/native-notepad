@@ -20,9 +20,9 @@ export default StackNavigator(
     {
         initialRouteName: 'Home',
         navigationOptions: {
-            headerTintColor: '#fff',
+            headerTintColor: '#ff9800',
             headerStyle: {
-                backgroundColor: '#607d8b'
+                backgroundColor: '#fff'
             }
         }
     }

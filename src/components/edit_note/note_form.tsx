@@ -14,7 +14,7 @@ import {
     Textarea
 } from 'native-base';
 import * as React from 'react';
-import { View } from 'react-native';
+import { ToastAndroid, View } from 'react-native';
 
 import getTheme from '../../../native-base-theme/components';
 import { EditFormProps, FormState } from '../../types';
@@ -23,6 +23,7 @@ import { NoteFormTheme, styles } from './styles';
 /**
  * Edit note form component
  */
+
 export default class NoteForm extends React.Component<
     EditFormProps,
     FormState
@@ -36,8 +37,35 @@ export default class NoteForm extends React.Component<
             category: this.props.note.category
         };
     }
-    onChange = (state: FormState) => {
-        this.props.onChange(state);
+    onChange = (id, value) => {
+        if (id === 'title' && value.length > 25) {
+            ToastAndroid.show(
+                'Max length reached',
+                ToastAndroid.SHORT
+            );
+            return;
+        }
+        this.setState(
+            {
+                [id]: value
+            },
+            () => this.props.onChange(this.state)
+        );
+    };
+    onChangeText = (value) => {
+        if (value.length > 25) {
+            ToastAndroid.show(
+                'Max length reached',
+                ToastAndroid.SHORT
+            );
+        } else {
+            this.setState(
+                {
+                    title: value
+                },
+                () => this.props.onChange(this.state)
+            );
+        }
     };
     render() {
         const categories: string[] = ['Personal', 'School', 'Work'];
@@ -48,16 +76,11 @@ export default class NoteForm extends React.Component<
                         <Item stackedLabel>
                             <Label>Note Title</Label>
                             <Input
-                                value={this.state.title}
                                 onChangeText={(text) =>
-                                    this.setState(
-                                        {
-                                            title: text
-                                        },
-                                        () =>
-                                            this.onChange(this.state)
-                                    )
+                                    this.onChangeText(text)
                                 }
+                                value={this.state.title}
+                                maxLength={25}
                             />
                         </Item>
                         <Textarea
@@ -66,12 +89,7 @@ export default class NoteForm extends React.Component<
                             placeholder="Note content"
                             value={this.state.body}
                             onChangeText={(text) =>
-                                this.setState(
-                                    {
-                                        body: text
-                                    },
-                                    () => this.onChange(this.state)
-                                )
+                                this.onChange('body', text)
                             }
                         />
                         <View style={styles.pickerCont}>
@@ -79,17 +97,11 @@ export default class NoteForm extends React.Component<
                                 Category:
                             </Text>
                             <Picker
+                                selectedValue={this.state.category}
                                 iosHeader="Select Category"
                                 mode="dropdown"
-                                selectedValue={this.state.category}
                                 onValueChange={(item, index) =>
-                                    this.setState(
-                                        {
-                                            category: index
-                                        },
-                                        () =>
-                                            this.onChange(this.state)
-                                    )
+                                    this.onChange('category', index)
                                 }
                             >
                                 {categories.map((item, index) => (

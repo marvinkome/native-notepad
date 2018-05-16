@@ -28,7 +28,8 @@ export const styles: EditNoteFormStyles = StyleSheet.create({
         marginTop: 15
     },
     pickerCont: {
-        marginTop: 15
+        marginTop: 15,
+        marginLeft: 10
     },
     pickerText: {
         paddingLeft: 8,
@@ -36,8 +37,8 @@ export const styles: EditNoteFormStyles = StyleSheet.create({
         color: '#575757'
     },
     headerText: {
-        color: '#fff',
-        fontSize: 17,
+        color: '#ff9800',
+        fontSize: 15,
         marginRight: 15
     }
 });

@@ -19,13 +19,13 @@ export class EditNote extends React.Component<EditProps, EditState> {
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
         return {
-            title: 'Edit Note',
+            title: '',
             headerRight: (
                 <View>
                     <TouchableOpacity
                         onPress={params ? params.edit : () => false}
                     >
-                        <Text style={styles.headerText}>Save</Text>
+                        <Text style={styles.headerText}>SAVE</Text>
                     </TouchableOpacity>
                 </View>
             )
