@@ -5,21 +5,16 @@
 import { Button, Container, Fab, Icon } from 'native-base';
 import * as React from 'react';
 import { View } from 'react-native';
-import { NavigationScreenProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { INote } from '../../redux/reducers';
+import { HomeProps } from '../../types';
 import Listing from './listing';
 import { styles } from './styles';
-
-interface Props extends NavigationScreenProps<{}> {
-    notes: INote[];
-}
 
 /**
  * Home component
  */
-export class Home extends React.Component<Props, {}> {
+export class Home extends React.Component<HomeProps, {}> {
     static navigationOptions: object = {
         title: 'Home'
     };

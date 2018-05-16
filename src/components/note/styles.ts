@@ -5,17 +5,13 @@
 
 import { StyleSheet } from 'react-native';
 import material from '../../../native-base-theme/variables/material';
+import { NoteStyles } from '../../types';
 
 export const BodyTheme: object = {
     ...material
 };
 
-export const styles: {
-    content: object;
-    text: object;
-    headerView: object;
-    headerText: object;
-} = StyleSheet.create({
+export const styles: NoteStyles = StyleSheet.create({
     content: {
         paddingTop: 20,
         paddingLeft: 10

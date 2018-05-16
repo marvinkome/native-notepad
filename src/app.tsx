@@ -12,18 +12,14 @@ import { connect, Provider } from 'react-redux';
 
 import store from './redux/store';
 import Navigator from './routeConfig';
+import { AppProps } from './types';
 
 YellowBox.ignoreWarnings([
     'Warning: isMounted(...) is deprecated',
     'Module RCTImageLoader'
 ]);
 
-interface IProps {
-    dispatch: any;
-    nav: any;
-}
-
-class App extends React.Component<IProps, {}> {
+class App extends React.Component<AppProps, {}> {
     componentDidMount() {
         BackHandler.addEventListener(
             'hardwareBackPress',

@@ -5,6 +5,7 @@
 
 import { StyleSheet } from 'react-native';
 import material from '../../../native-base-theme/variables/material';
+import { HomeStyles } from '../../types';
 
 export const ListingTheme: object = {
     ...material,
@@ -12,12 +13,7 @@ export const ListingTheme: object = {
     listItemMargin: 0
 };
 
-export const styles: {
-    listItemStyle: object;
-    listBodyText: object;
-    listDateText: object;
-    iconStyles: object;
-} = StyleSheet.create({
+export const styles: HomeStyles = StyleSheet.create({
     listItemStyle: {
         borderLeftWidth: 7,
         borderLeftColor: 'red',

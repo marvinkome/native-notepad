@@ -1,8 +1,5 @@
 /**
  * ./src/components/helpers/listing
- * Listing component
- * @props
- * items: array of strings
  */
 
 import {
@@ -19,27 +16,23 @@ import {
 import * as React from 'react';
 import getTheme from '../../../native-base-theme/components';
 
-import { INote } from '../../redux/reducers';
+import { ListingProps, NoteTypes } from '../../types';
 import { ListingTheme, styles } from './styles';
-
-interface Props {
-    items: INote[];
-    onPress: (pagename: string, param?: object) => void;
-}
 
 /**
  * Listing component. Recieve items props (an array of strings) to render
- *
- * *props - items: string[]
  */
-export default class Listing extends React.Component<Props, {}> {
+export default class Listing extends React.Component<
+    ListingProps,
+    {}
+> {
     render() {
         return (
             <StyleProvider style={getTheme(ListingTheme)}>
                 <Content>
                     <List
                         dataArray={this.props.items}
-                        renderRow={(item: INote) => (
+                        renderRow={(item: NoteTypes) => (
                             <ListItem
                                 style={styles.listItemStyle}
                                 onPress={() =>
