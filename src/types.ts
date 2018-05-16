@@ -197,6 +197,7 @@ export interface NoteBodyProps {
  */
 export interface NoteProps extends NavigationScreenProps<{}> {
     notes: NoteTypes[];
+    deleteNote: (id: string) => void;
 }
 
 /**

@@ -4,10 +4,11 @@
 
 import { Container, Text, View } from 'native-base';
 import * as React from 'react';
-import { TouchableHighlight } from 'react-native';
+import { Alert, ToastAndroid, TouchableOpacity } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
+import { deleteNote } from '../../redux/actions';
 import { NoteProps } from '../../types';
 import NoteBody from './body';
 import { styles } from './styles';
@@ -28,10 +29,16 @@ export class Note extends React.Component<NoteProps, {}> {
                     : 'Title...',
             headerRight: (
                 <View style={styles.headerView}>
-                    <TouchableHighlight onPress={params.edit}>
+                    <TouchableOpacity
+                        onPress={params ? params.edit : () => false}
+                    >
                         <Text style={styles.headerText}>Edit</Text>
-                    </TouchableHighlight>
-                    <Text style={styles.headerText}>Delete</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={params ? params.delete : () => false}
+                    >
+                        <Text style={styles.headerText}>Delete</Text>
+                    </TouchableOpacity>
                 </View>
             )
         };
@@ -40,6 +47,7 @@ export class Note extends React.Component<NoteProps, {}> {
     componentWillMount() {
         this.props.navigation.setParams({
             edit: this.edit,
+            delete: this.delete,
             note: this.props.notes.filter((value) => {
                 if (
                     value.id ===
@@ -64,6 +72,46 @@ export class Note extends React.Component<NoteProps, {}> {
         });
     };
 
+    delete = () => {
+        Alert.alert(
+            '',
+            'This note will be deleted',
+            [
+                { text: 'Cancel' },
+                {
+                    text: 'Delete',
+                    onPress: () => {
+                        this.props.deleteNote(
+                            this.props.navigation.getParam('noteId')
+                        );
+                        ToastAndroid.show(
+                            'deleted',
+                            ToastAndroid.SHORT
+                        );
+                        this.props.navigation.goBack();
+                    }
+                }
+            ],
+            {
+                cancelable: true
+            }
+        );
+    };
+
+    shouldComponentUpdate(np) {
+        const note = np.notes.filter((value) => {
+            if (value.id === np.navigation.getParam('noteId')) {
+                return value;
+            }
+        })[0];
+
+        if (note !== undefined) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     render() {
         const note = this.props.notes.filter((value) => {
             if (
@@ -84,4 +132,8 @@ const mapStore = (store) => ({
     notes: store.main.notes
 });
 
-export default connect(mapStore)(Note);
+const mapDispatch = (dispatch) => ({
+    deleteNote: (id: string) => dispatch(deleteNote(id))
+});
+
+export default connect(mapStore, mapDispatch)(Note);
