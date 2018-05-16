@@ -15,14 +15,30 @@ import {
 } from 'native-base';
 import * as React from 'react';
 import { View } from 'react-native';
+
 import getTheme from '../../../native-base-theme/components';
-import Topbar from '../helpers/topbar';
+import { FormState, NoteFormProps } from '../../types';
 import { NoteFormTheme, styles } from './styles';
 
 /**
  * New note form component
  */
-export default class NoteForm extends React.Component {
+export default class NoteForm extends React.Component<
+    NoteFormProps,
+    FormState
+> {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: '',
+            body: '',
+            category: 0
+        };
+    }
+    onChange = (state: FormState) => {
+        this.props.onChange(state);
+    };
     render() {
         const categories: string[] = ['Personal', 'School', 'Work'];
 
@@ -32,20 +48,48 @@ export default class NoteForm extends React.Component {
                     <Form>
                         <Item stackedLabel>
                             <Label>Note Title</Label>
-                            <Input />
+                            <Input
+                                onChangeText={(text) =>
+                                    this.setState(
+                                        {
+                                            title: text
+                                        },
+                                        () =>
+                                            this.onChange(this.state)
+                                    )
+                                }
+                            />
                         </Item>
                         <Textarea
                             style={styles.textArea}
-                            rowSpan={5}
+                            rowSpan={3}
                             placeholder="Note content"
+                            onChangeText={(text) =>
+                                this.setState(
+                                    {
+                                        body: text
+                                    },
+                                    () => this.onChange(this.state)
+                                )
+                            }
                         />
                         <View style={styles.pickerCont}>
                             <Text style={styles.pickerText}>
                                 Category:
                             </Text>
                             <Picker
+                                selectedValue={this.state.category}
                                 iosHeader="Select Category"
                                 mode="dropdown"
+                                onValueChange={(item, index) =>
+                                    this.setState(
+                                        {
+                                            category: index
+                                        },
+                                        () =>
+                                            this.onChange(this.state)
+                                    )
+                                }
                             >
                                 {categories.map((item, index) => (
                                     <Picker.Item

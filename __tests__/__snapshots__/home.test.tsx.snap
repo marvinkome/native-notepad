@@ -261,12 +261,16 @@ exports[`Renders homepage correctly 1`] = `
           Array [
             Object {
               "body": "This is a notepad app",
-              "id": 1,
+              "category": 1,
+              "date": 0,
+              "id": "0",
               "title": "Note 1",
             },
             Object {
               "body": "This is the second note",
-              "id": 1,
+              "category": 1,
+              "date": 0,
+              "id": "1",
               "title": "Note 2",
             },
           ]

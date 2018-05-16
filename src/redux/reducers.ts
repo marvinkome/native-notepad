@@ -8,25 +8,19 @@ import { combineReducers } from 'redux';
 
 import Home from '../components/home';
 import Navigator from '../routeConfig';
+import { NoteTypes } from '../types';
 import constants from './constants';
 import initialState from './initState';
 
-// Types
-export interface INote {
-    id: number;
-    title: string;
-    body: string;
-}
-
 // Utility functions
-function saveToStorage(key: string, store: any) {
+function saveToStorage(key: string, store: { notes: NoteTypes[] }) {
     const jsonStore = JSON.stringify(store);
     AsyncStorage.setItem(key, jsonStore);
 }
 
 const removeItem = (
-    array: any[],
-    itemId: number,
+    array: NoteTypes[],
+    itemId: string,
     key: string = 'id'
 ) => {
     const newArray = array.slice();
@@ -39,17 +33,10 @@ const removeItem = (
     return newArray;
 };
 
-const updateObject = (oldObj: object, newValues: object) => {
-    return {
-        ...oldObj,
-        ...newValues
-    };
-};
-
 const updateItemArray = (
-    array: any[],
-    itemId: number,
-    callback: (item) => any,
+    array: NoteTypes[],
+    itemId: string,
+    callback: (item: NoteTypes) => NoteTypes,
     key: string = 'id'
 ) => {
     const updatedItems = array.map((item) => {
@@ -64,6 +51,62 @@ const updateItemArray = (
     return updatedItems;
 };
 
+// Case reducers
+const addNote = (store: { notes: NoteTypes[] }, note: NoteTypes) => {
+    const newStore = {
+        ...store,
+        notes: [...store.notes, note]
+    };
+
+    saveToStorage('notepad_app', newStore);
+    return newStore;
+};
+
+const editNote = (
+    oldState: { notes: NoteTypes[] },
+    note: NoteTypes,
+    noteId: string
+) => {
+    const newStore = {
+        ...oldState,
+        notes: updateItemArray(oldState.notes, noteId, (item) => ({
+            ...item,
+            ...note
+        }))
+    };
+
+    saveToStorage('notepad_app', newStore);
+    return newStore;
+};
+
+const deleteNote = (
+    oldState: { notes: NoteTypes[] },
+    noteId: string
+) => {
+    const newState = {
+        ...oldState,
+        notes: removeItem(oldState.notes, noteId)
+    };
+
+    saveToStorage('notepad_app', newState);
+    return newState;
+};
+export const rootReducer = (
+    state = initialState,
+    action: { type: string; payload: any; id: string }
+) => {
+    switch (action.type) {
+        case constants.ADD_NOTE:
+            return addNote(state, action.payload);
+        case constants.EDIT_NOTE:
+            return editNote(state, action.payload, action.id);
+        case constants.DELETE_POST:
+            return deleteNote(state, action.id);
+        default:
+            return state;
+    }
+};
+
 // Navigation
 const router = Navigator.router;
 const homeAction = Navigator.router.getActionForPathAndParams('Home');
@@ -76,49 +119,6 @@ const navReducer = (state = initNavState, action) => {
     );
 
     return nestState || state;
-};
-
-// Case reducers
-const addNote = (store: { notes: INote[] }, note: INote) => {
-    const newStore = updateObject(store, {
-        notes: [...store.notes, note]
-    });
-
-    saveToStorage('notepad_app', newStore);
-    return newStore;
-};
-
-const editNote = (
-    store: { notes: INote[] },
-    note: INote,
-    noteId: number
-) => {
-    const newNote = updateItemArray(store.notes, noteId, (item) => {
-        return updateObject(item, {
-            ...note
-        });
-    });
-
-    const newStore = updateObject(store, {
-        notes: newNote
-    });
-
-    saveToStorage('notepad_app', newStore);
-    return newStore;
-};
-
-export const rootReducer = (
-    state = initialState,
-    action: { type: string; payload: any; id?: number }
-) => {
-    switch (action.type) {
-        case constants.ADD_NOTE:
-            return addNote;
-        case constants.EDIT_NOTE:
-            return editNote;
-        default:
-            return state;
-    }
 };
 
 export default combineReducers({
