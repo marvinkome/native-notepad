@@ -17,7 +17,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 
 import getTheme from '../../../native-base-theme/components';
-import { NoteFormProps, NoteFormState } from '../../types';
+import { FormState, NoteFormProps } from '../../types';
 import { NoteFormTheme, styles } from './styles';
 
 /**
@@ -25,7 +25,7 @@ import { NoteFormTheme, styles } from './styles';
  */
 export default class NoteForm extends React.Component<
     NoteFormProps,
-    NoteFormState
+    FormState
 > {
     constructor(props) {
         super(props);
@@ -36,7 +36,7 @@ export default class NoteForm extends React.Component<
             category: 0
         };
     }
-    onChange = (state: NoteFormState) => {
+    onChange = (state: FormState) => {
         this.props.onChange(state);
     };
     render() {
@@ -62,7 +62,7 @@ export default class NoteForm extends React.Component<
                         </Item>
                         <Textarea
                             style={styles.textArea}
-                            rowSpan={5}
+                            rowSpan={3}
                             placeholder="Note content"
                             onChangeText={(text) =>
                                 this.setState(

@@ -14,7 +14,7 @@ const persistedState = getFromStorage('notepad_store');
 export default {
     notes: [
         {
-            id: '1',
+            id: '0',
             title: 'Note 1',
             body: 'This is a notepad app',
             category: 1,

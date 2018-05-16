@@ -6,11 +6,54 @@
 import { NavigationScreenProps } from 'react-navigation';
 
 /**
+ * generic Form props
+ *
+ * @export
+ * @interface FormProps
+ * @template T
+ */
+export interface FormProps<T> {
+    onChange: (state) => void;
+}
+
+/**
  * Props for class App in ./src/app.tsx
+ *
+ * @export
+ * @interface AppProps
  */
 export interface AppProps {
     dispatch: any;
     nav: any;
+}
+
+/**
+ * prop types for edit style component
+ *
+ * @export
+ * @interface HomeProps
+ * @extends {NavigationScreenProps<{}>}
+ */
+export interface EditProps extends NavigationScreenProps<{}> {
+    editNote: (data: NoteTypes, id: string) => void;
+}
+
+/**
+ * state types for edit note component
+ *
+ * @export
+ * @interface EditState
+ */
+export interface EditState {
+    data: {
+        title: string;
+        body: string;
+        category: number;
+    };
+}
+
+export interface EditFormProps extends FormProps<{}> {
+    note: NoteTypes;
 }
 
 /**
@@ -24,6 +67,7 @@ export interface EditNoteFormStyles {
     textArea: object;
     pickerCont: object;
     pickerText: object;
+    headerText: object;
 }
 
 /**
@@ -106,9 +150,7 @@ export interface NewNoteState {
  * @export
  * @interface NoteFormProps
  */
-export interface NoteFormProps {
-    onChange: (state) => void;
-}
+export interface NoteFormProps extends FormProps<{}> {}
 
 /**
  * State props for note forms
@@ -116,7 +158,7 @@ export interface NoteFormProps {
  * @export
  * @interface NoteFormState
  */
-export interface NoteFormState {
+export interface FormState {
     title: string;
     body: string;
     category: number;
@@ -153,7 +195,9 @@ export interface NoteBodyProps {
  * @interface NoteProps
  * @extends {NavigationScreenProps<{}>}
  */
-export interface NoteProps extends NavigationScreenProps<{}> {}
+export interface NoteProps extends NavigationScreenProps<{}> {
+    notes: NoteTypes[];
+}
 
 /**
  * Types for note component styles

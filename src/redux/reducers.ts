@@ -33,6 +33,24 @@ const removeItem = (
     return newArray;
 };
 
+const updateItemArray = (
+    array: NoteTypes[],
+    itemId: string,
+    callback: (item: NoteTypes) => NoteTypes,
+    key: string = 'id'
+) => {
+    const updatedItems = array.map((item) => {
+        if (item[key] !== itemId) {
+            return item;
+        }
+
+        const updatedItem = callback(item);
+        return updatedItem;
+    });
+
+    return updatedItems;
+};
+
 // Case reducers
 const addNote = (store: { notes: NoteTypes[] }, note: NoteTypes) => {
     const newStore = {
@@ -51,17 +69,10 @@ const editNote = (
 ) => {
     const newStore = {
         ...oldState,
-        notes: oldState.notes.map((value) => {
-            if (value.id !== noteId) {
-                return value;
-            }
-            const updatedItem = {
-                ...value,
-                ...note
-            };
-
-            return updatedItem;
-        })
+        notes: updateItemArray(oldState.notes, noteId, (item) => ({
+            ...item,
+            ...note
+        }))
     };
 
     saveToStorage('notepad_app', newStore);

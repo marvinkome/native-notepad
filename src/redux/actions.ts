@@ -13,5 +13,5 @@ export const addNote = (note: NoteTypes) => ({
 export const editNote = (note: NoteTypes, id: string) => ({
     type: constants.EDIT_NOTE,
     payload: note,
-    id: id
+    id
 });

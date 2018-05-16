@@ -37,8 +37,6 @@ export default class Listing extends React.Component<
                                 style={styles.listItemStyle}
                                 onPress={() =>
                                     this.props.onPress('Note', {
-                                        noteName: item.title,
-                                        noteBody: item.body,
                                         noteId: item.id
                                     })
                                 }

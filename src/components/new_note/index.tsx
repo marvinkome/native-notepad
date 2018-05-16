@@ -5,8 +5,7 @@
 import { Container, Text } from 'native-base';
 
 import * as React from 'react';
-import { TouchableHighlight, View } from 'react-native';
-import { NavigationScreenProps } from 'react-navigation';
+import { ToastAndroid, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 
@@ -29,11 +28,11 @@ export class NewNote extends React.Component<
             title: 'Add new note',
             headerRight: (
                 <View>
-                    <TouchableHighlight
+                    <TouchableOpacity
                         onPress={params ? params.save : () => false}
                     >
                         <Text style={styles.headerText}>Save</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             )
         };
@@ -65,9 +64,12 @@ export class NewNote extends React.Component<
             id,
             date
         });
+
+        ToastAndroid.show('Note created', ToastAndroid.SHORT);
+        this.props.navigation.goBack();
     };
 
-    getData = (state) => {
+    getData = (state: NoteTypes) => {
         this.setState({ data: state });
     };
 
