@@ -28,8 +28,8 @@ export default class Listing extends React.Component<
     {}
 > {
     truncate = (text: string) => {
-        return text.length > 17
-            ? text.substring(0, 17 - 3) + '...'
+        return text.length > 20
+            ? text.substring(0, 20 - 3) + '...'
             : text;
     };
     render() {

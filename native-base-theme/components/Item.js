@@ -45,7 +45,8 @@ export default (variables = variable) => {
                 right: null,
                 paddingTop: 5,
                 alignSelf: 'flex-start',
-                fontSize: variables.inputFontSize - 2
+                fontSize: variables.inputFontSize - 2,
+                fontFamily: variables.fontFamily
             },
             'NativeBase.Icon': {
                 marginTop: 36
@@ -59,7 +60,8 @@ export default (variables = variable) => {
                         ? null
                         : variables.deviceWidth - 25,
                 fontSize: variables.inputFontSize,
-                lineHeight: variables.inputLineHeight - 6
+                lineHeight: variables.inputLineHeight - 6,
+                fontFamily: variables.fontFamily
             },
             flexDirection: null,
             height: variables.inputHeightBase + 15

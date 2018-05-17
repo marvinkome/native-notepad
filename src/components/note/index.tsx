@@ -2,16 +2,17 @@
  * ./src/components/note/index
  */
 
-import { Container, Text, View } from 'native-base';
+import { Container, StyleProvider, Text, View } from 'native-base';
 import * as React from 'react';
 import { Alert, ToastAndroid, TouchableOpacity } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
+import getTheme from '../../../native-base-theme/components';
 import { deleteNote } from '../../redux/actions';
 import { NoteProps } from '../../types';
 import NoteBody from './body';
-import { styles } from './styles';
+import { BodyTheme, styles } from './styles';
 
 /**
  * Note component
@@ -107,10 +108,12 @@ export class Note extends React.Component<NoteProps, {}> {
             }
         })[0];
         return (
-            <Container style={{ backgroundColor: '#fff' }}>
-                <Text style={styles.noteTitle}>{note.title}</Text>
-                <NoteBody>{note.body}</NoteBody>
-            </Container>
+            <StyleProvider style={getTheme(BodyTheme)}>
+                <Container style={{ backgroundColor: '#fff' }}>
+                    <Text style={styles.noteTitle}>{note.title}</Text>
+                    <NoteBody>{note.body}</NoteBody>
+                </Container>
+            </StyleProvider>
         );
     }
 }

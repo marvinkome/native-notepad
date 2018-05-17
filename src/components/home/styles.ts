@@ -22,8 +22,8 @@ export const styles = (category?: number) =>
             marginBottom: 1
         },
         listBodyText: {
-            fontWeight: '600',
-            fontSize: 23
+            fontWeight: 'normal',
+            fontSize: 19
         },
         listDateText: {
             fontSize: 13,

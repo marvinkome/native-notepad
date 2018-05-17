@@ -4,7 +4,7 @@
 
 import { Button, Container, Fab, Icon, Text } from 'native-base';
 import * as React from 'react';
-import { View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { HomeProps } from '../../types';
@@ -28,7 +28,8 @@ export class Home extends React.Component<HomeProps, {}> {
     render() {
         return (
             <Container style={{ backgroundColor: '#fff' }}>
-                {this.props.notes.length > 0 ? (
+                {this.props.notes !== undefined &&
+                this.props.notes.length > 0 ? (
                     <Listing
                         items={this.props.notes}
                         onPress={this.onPress}

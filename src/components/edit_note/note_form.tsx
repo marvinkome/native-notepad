@@ -100,9 +100,11 @@ export default class NoteForm extends React.Component<
                                 selectedValue={this.state.category}
                                 iosHeader="Select Category"
                                 mode="dropdown"
+                                itemTextStyle={{ color: '#f00' }}
                                 onValueChange={(item, index) =>
                                     this.onChange('category', index)
                                 }
+                                note
                             >
                                 {categories.map((item, index) => (
                                     <Picker.Item

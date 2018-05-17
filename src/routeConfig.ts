@@ -21,6 +21,9 @@ export default StackNavigator(
         initialRouteName: 'Home',
         navigationOptions: {
             headerTintColor: '#ff9800',
+            headerTitleStyle: {
+                fontFamily: 'JosefinSans'
+            },
             headerStyle: {
                 backgroundColor: '#fff'
             }

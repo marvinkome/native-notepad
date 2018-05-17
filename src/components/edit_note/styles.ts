@@ -39,6 +39,7 @@ export const styles: EditNoteFormStyles = StyleSheet.create({
     headerText: {
         color: '#ff9800',
         fontSize: 15,
-        marginRight: 15
+        marginRight: 15,
+        fontFamily: 'JosefinSans'
     }
 });

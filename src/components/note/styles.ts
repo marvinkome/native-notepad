@@ -28,7 +28,8 @@ export const styles: NoteStyles = StyleSheet.create({
     headerText: {
         fontSize: 15,
         color: '#ff9800',
-        marginLeft: 15
+        marginLeft: 15,
+        fontFamily: 'JosefinSans'
     },
     noteTitle: {
         fontSize: 20,

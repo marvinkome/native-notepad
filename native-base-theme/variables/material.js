@@ -104,7 +104,7 @@ export default {
     brandLight: '#f4f4f4',
 
     // Font
-    fontFamily: 'Roboto',
+    fontFamily: 'JosefinSans',
     fontSizeBase: 15,
     get fontSizeH1() {
         return this.fontSizeBase * 1.8;
