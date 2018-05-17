@@ -20,9 +20,12 @@ export default StackNavigator(
     {
         initialRouteName: 'Home',
         navigationOptions: {
-            headerTintColor: '#fff',
+            headerTintColor: '#ff9800',
+            headerTitleStyle: {
+                fontFamily: 'JosefinSans'
+            },
             headerStyle: {
-                backgroundColor: '#607d8b'
+                backgroundColor: '#fff'
             }
         }
     }

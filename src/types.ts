@@ -211,4 +211,5 @@ export interface NoteStyles {
     text: object;
     headerView: object;
     headerText: object;
+    noteTitle: object;
 }

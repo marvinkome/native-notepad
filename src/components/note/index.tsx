@@ -2,16 +2,17 @@
  * ./src/components/note/index
  */
 
-import { Container, Text, View } from 'native-base';
+import { Container, StyleProvider, Text, View } from 'native-base';
 import * as React from 'react';
 import { Alert, ToastAndroid, TouchableOpacity } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { connect } from 'react-redux';
 
+import getTheme from '../../../native-base-theme/components';
 import { deleteNote } from '../../redux/actions';
 import { NoteProps } from '../../types';
 import NoteBody from './body';
-import { styles } from './styles';
+import { BodyTheme, styles } from './styles';
 
 /**
  * Note component
@@ -20,24 +21,18 @@ export class Note extends React.Component<NoteProps, {}> {
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
         return {
-            title:
-                params && params.note
-                    ? params.note.title.length > 16
-                        ? params.note.title.substring(0, 16 - 3) +
-                          '...'
-                        : params.note.title
-                    : 'Title...',
+            title: '',
             headerRight: (
                 <View style={styles.headerView}>
                     <TouchableOpacity
                         onPress={params ? params.edit : () => false}
                     >
-                        <Text style={styles.headerText}>Edit</Text>
+                        <Text style={styles.headerText}>EDIT</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={params ? params.delete : () => false}
                     >
-                        <Text style={styles.headerText}>Delete</Text>
+                        <Text style={styles.headerText}>DELETE</Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -47,15 +42,7 @@ export class Note extends React.Component<NoteProps, {}> {
     componentWillMount() {
         this.props.navigation.setParams({
             edit: this.edit,
-            delete: this.delete,
-            note: this.props.notes.filter((value) => {
-                if (
-                    value.id ===
-                    this.props.navigation.getParam('noteId')
-                ) {
-                    return value;
-                }
-            })[0]
+            delete: this.delete
         });
     }
 
@@ -77,7 +64,7 @@ export class Note extends React.Component<NoteProps, {}> {
             '',
             'This note will be deleted',
             [
-                { text: 'Cancel' },
+                { text: 'Cancel', style: 'cancel' },
                 {
                     text: 'Delete',
                     onPress: () => {
@@ -121,9 +108,12 @@ export class Note extends React.Component<NoteProps, {}> {
             }
         })[0];
         return (
-            <Container style={{ backgroundColor: '#fff' }}>
-                <NoteBody>{note.body}</NoteBody>
-            </Container>
+            <StyleProvider style={getTheme(BodyTheme)}>
+                <Container style={{ backgroundColor: '#fff' }}>
+                    <Text style={styles.noteTitle}>{note.title}</Text>
+                    <NoteBody>{note.body}</NoteBody>
+                </Container>
+            </StyleProvider>
         );
     }
 }

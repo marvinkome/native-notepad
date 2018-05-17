@@ -14,7 +14,7 @@ import {
     Textarea
 } from 'native-base';
 import * as React from 'react';
-import { View } from 'react-native';
+import { ToastAndroid, View } from 'react-native';
 
 import getTheme from '../../../native-base-theme/components';
 import { FormState, NoteFormProps } from '../../types';
@@ -36,12 +36,38 @@ export default class NoteForm extends React.Component<
             category: 0
         };
     }
-    onChange = (state: FormState) => {
-        this.props.onChange(state);
+    onChange = (id, value) => {
+        if (id === 'title' && value.length > 25) {
+            ToastAndroid.show(
+                'Max length reached',
+                ToastAndroid.SHORT
+            );
+            return;
+        }
+        this.setState(
+            {
+                [id]: value
+            },
+            () => this.props.onChange(this.state)
+        );
+    };
+    onChangeText = (value) => {
+        if (value.length > 25) {
+            ToastAndroid.show(
+                'Max length reached',
+                ToastAndroid.SHORT
+            );
+        } else {
+            this.setState(
+                {
+                    title: value
+                },
+                () => this.props.onChange(this.state)
+            );
+        }
     };
     render() {
         const categories: string[] = ['Personal', 'School', 'Work'];
-
         return (
             <StyleProvider style={getTheme(NoteFormTheme)}>
                 <Content style={styles.content}>
@@ -50,27 +76,19 @@ export default class NoteForm extends React.Component<
                             <Label>Note Title</Label>
                             <Input
                                 onChangeText={(text) =>
-                                    this.setState(
-                                        {
-                                            title: text
-                                        },
-                                        () =>
-                                            this.onChange(this.state)
-                                    )
+                                    this.onChangeText(text)
                                 }
+                                value={this.state.title}
+                                maxLength={25}
                             />
                         </Item>
                         <Textarea
                             style={styles.textArea}
                             rowSpan={3}
                             placeholder="Note content"
+                            value={this.state.body}
                             onChangeText={(text) =>
-                                this.setState(
-                                    {
-                                        body: text
-                                    },
-                                    () => this.onChange(this.state)
-                                )
+                                this.onChange('body', text)
                             }
                         />
                         <View style={styles.pickerCont}>
@@ -82,13 +100,7 @@ export default class NoteForm extends React.Component<
                                 iosHeader="Select Category"
                                 mode="dropdown"
                                 onValueChange={(item, index) =>
-                                    this.setState(
-                                        {
-                                            category: index
-                                        },
-                                        () =>
-                                            this.onChange(this.state)
-                                    )
+                                    this.onChange('category', index)
                                 }
                             >
                                 {categories.map((item, index) => (

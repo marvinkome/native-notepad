@@ -10,12 +10,18 @@ import Home from '../components/home';
 import Navigator from '../routeConfig';
 import { NoteTypes } from '../types';
 import constants from './constants';
-import initialState from './initState';
+import initialState, { asyncStore } from './initState';
 
 // Utility functions
-function saveToStorage(key: string, store: { notes: NoteTypes[] }) {
-    const jsonStore = JSON.stringify(store);
-    AsyncStorage.setItem(key, jsonStore);
+async function saveToStorage(
+    key: string,
+    store: { notes: NoteTypes[] }
+) {
+    try {
+        return await AsyncStorage.setItem(key, JSON.stringify(store));
+    } catch (err) {
+        return;
+    }
 }
 
 const removeItem = (

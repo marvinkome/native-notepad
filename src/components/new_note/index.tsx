@@ -25,13 +25,13 @@ export class NewNote extends React.Component<
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
         return {
-            title: 'Add new note',
+            title: 'Add Note',
             headerRight: (
                 <View>
                     <TouchableOpacity
                         onPress={params ? params.save : () => false}
                     >
-                        <Text style={styles.headerText}>Save</Text>
+                        <Text style={styles.headerText}>SAVE</Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -57,16 +57,24 @@ export class NewNote extends React.Component<
         const id = uuid();
         const date = Date.now();
 
-        this.props.addNote({
-            title: this.state.data.title,
-            body: this.state.data.body,
-            category: this.state.data.category,
-            id,
-            date
-        });
+        if (this.state.data.body.length <= 0) {
+            this.props.navigation.goBack();
+            return ToastAndroid.show(
+                'Cant create empty note',
+                ToastAndroid.SHORT
+            );
+        } else {
+            this.props.addNote({
+                title: this.state.data.title,
+                body: this.state.data.body,
+                category: this.state.data.category,
+                id,
+                date
+            });
 
-        ToastAndroid.show('Note created', ToastAndroid.SHORT);
-        this.props.navigation.goBack();
+            ToastAndroid.show('Note created', ToastAndroid.SHORT);
+            this.props.navigation.goBack();
+        }
     };
 
     getData = (state: NoteTypes) => {

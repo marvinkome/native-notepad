@@ -2,6 +2,7 @@
  * ./src/components/helpers/listing
  */
 
+import moment from 'moment';
 import {
     Body,
     CheckBox,
@@ -26,6 +27,11 @@ export default class Listing extends React.Component<
     ListingProps,
     {}
 > {
+    truncate = (text: string) => {
+        return text.length > 20
+            ? text.substring(0, 20 - 3) + '...'
+            : text;
+    };
     render() {
         return (
             <StyleProvider style={getTheme(ListingTheme)}>
@@ -34,7 +40,10 @@ export default class Listing extends React.Component<
                         dataArray={this.props.items}
                         renderRow={(item: NoteTypes) => (
                             <ListItem
-                                style={styles.listItemStyle}
+                                style={
+                                    styles(item.category)
+                                        .listItemStyle
+                                }
                                 onPress={() =>
                                     this.props.onPress('Note', {
                                         noteId: item.id
@@ -42,18 +51,23 @@ export default class Listing extends React.Component<
                                 }
                             >
                                 <Body>
-                                    <Text style={styles.listBodyText}>
-                                        {item.title.length > 19
-                                            ? item.title.substring(
-                                                  0,
-                                                  19 - 3
-                                              ) + '...'
-                                            : item.title}
+                                    <Text
+                                        style={styles().listBodyText}
+                                    >
+                                        {item.title.length <= 0
+                                            ? this.truncate(item.body)
+                                            : this.truncate(
+                                                  item.title
+                                              )}
                                     </Text>
                                 </Body>
                                 <Right>
-                                    <Text style={styles.listDateText}>
-                                        11/12/18
+                                    <Text
+                                        style={styles().listDateText}
+                                    >
+                                        {moment(item.date).format(
+                                            'D MMM YYYY'
+                                        )}
                                     </Text>
                                 </Right>
                             </ListItem>

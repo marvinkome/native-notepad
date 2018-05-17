@@ -9,8 +9,9 @@ import * as React from 'react';
 import { BackHandler, YellowBox } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect, Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import store from './redux/store';
+import { persistor, store } from './redux/store';
 import Navigator from './routeConfig';
 import { AppProps } from './types';
 
@@ -58,6 +59,8 @@ const ReduxComp = connect(mapStore)(App);
 
 export default () => (
     <Provider store={store}>
-        <ReduxComp />
+        <PersistGate loading={null} persistor={persistor}>
+            <ReduxComp />
+        </PersistGate>
     </Provider>
 );
