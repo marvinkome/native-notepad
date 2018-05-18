@@ -13,3 +13,6 @@ My notepad app re-built with react native
 ### Contribution
 
 Yes!! Contribution is highly appreciated.Drop any issues (bug/feature) you that you experienced.
+
+### Disclaimer
+App has only been tested on android and not on iphone yet
