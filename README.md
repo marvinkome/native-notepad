@@ -4,7 +4,7 @@ My notepad app re-built with react native
 
 ### Screenshots
 
-![alt notepad app screenshot](https://drive.google.com/uc?export=view&id=1k9wxz-HjiGWFGqh8gRmUHQQOJBJLQ7rt)
+![alt calculator screenshot](http://drive.google.com/uc?export=view&id=1aJpskPfdeH9MI5oiQI286VLQYFh-seC-)
 
 ### Download The app
 
