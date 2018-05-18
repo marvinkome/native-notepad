@@ -37,6 +37,7 @@ export const styles: NoteStyles = StyleSheet.create({
         marginRight: 10,
         paddingTop: 20,
         paddingBottom: 5,
-        fontWeight: '900'
+        fontWeight: '900',
+        fontFamily: 'JosefinSans'
     }
 });
