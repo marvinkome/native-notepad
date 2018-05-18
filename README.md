@@ -8,7 +8,7 @@ My notepad app re-built with react native
 
 ### Download The app
 
-[Download App](https://drive.google.com/open?id=1_4vDRRBNTVd1MsPoNhYkWBbbxr8lcUvm)
+[Download App (Android)](https://drive.google.com/open?id=1_4vDRRBNTVd1MsPoNhYkWBbbxr8lcUvm)
 
 ### Contribution
 
