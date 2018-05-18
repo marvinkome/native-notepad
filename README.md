@@ -4,7 +4,7 @@ My notepad app re-built with react native
 
 ### Screenshots
 
-![alt notepad app screenshot](http://drive.google.com/uc?export=view&id=1k9wxz-HjiGWFGqh8gRmUHQQOJBJLQ7rt)
+![alt notepad app screenshot](https://doc-04-24-docs.googleusercontent.com/docs/securesc/12e21n9eo5gi5qoo4iof6son59ortekp/f9dr8i29u7oa6qoegmoehhh2g1k5r19f/1526680800000/02884557963140307027/02884557963140307027/1k9wxz-HjiGWFGqh8gRmUHQQOJBJLQ7rt?e=view)
 
 ### Download The app
 
