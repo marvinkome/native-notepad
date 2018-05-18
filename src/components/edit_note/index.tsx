@@ -34,11 +34,12 @@ export class EditNote extends React.Component<EditProps, EditState> {
 
     constructor(props) {
         super(props);
+        const oldNote = this.props.navigation.getParam('note');
         this.state = {
             data: {
-                title: '',
-                body: '',
-                category: 0
+                title: oldNote.title,
+                body: oldNote.body,
+                category: oldNote.category
             }
         };
     }
@@ -49,18 +50,47 @@ export class EditNote extends React.Component<EditProps, EditState> {
 
     editNote = () => {
         const oldNote = this.props.navigation.getParam('note');
-        const note = {
-            ...this.state.data
+        let data: NoteTypes = {
+            ...oldNote
         };
 
-        this.props.editNote(
-            {
-                ...this.state.data,
-                id: oldNote.id,
-                date: oldNote.date
-            },
-            oldNote.id
-        );
+        // Checking is note changed
+        // title changed?
+        const titleChanged = this.state.data.title !== oldNote.title;
+        if (titleChanged) {
+            data = {
+                ...data,
+                title: this.state.data.title
+            };
+        }
+
+        // content changed?
+        const contentChanged = this.state.data.body !== oldNote.body;
+        if (contentChanged) {
+            // Check if body is empty
+            if (this.state.data.body.length <= 0) {
+                return ToastAndroid.show(
+                    'No content not saving',
+                    ToastAndroid.SHORT
+                );
+            }
+            data = {
+                ...data,
+                body: this.state.data.body
+            };
+        }
+
+        // category changed?
+        const categoryChanged =
+            this.state.data.category !== oldNote.category;
+        if (categoryChanged) {
+            data = {
+                ...data,
+                category: this.state.data.category
+            };
+        }
+
+        this.props.editNote(data, oldNote.id);
 
         ToastAndroid.show('saved', ToastAndroid.SHORT);
         this.props.navigation.goBack();
